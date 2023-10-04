@@ -8,6 +8,8 @@ build:
   env: # define environment variables
     - name: PORT
       value: '8080'
+    - name: HELLOWORLD_ENV
+      value: '|Mehdi Samsami|'
 
 run:
   command: python app/main.py # command to run fastapi
