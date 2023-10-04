@@ -38,7 +38,6 @@ def read_api_key():
             js = json.load(f)
             api_key = js["api_key"]
             # Do something with the file
-
     except IOError:
         logger.exception(e)
         print("/app/secrets/appconfig.conf not accessible")
@@ -56,7 +55,7 @@ if __name__ == "__main__":
         app,
         host="0.0.0.0",
         port=int(os.getenv("PORT", 8080)),
-        debug=os.getenv("DEBUG", False),
+        reload=True,
         log_level=os.getenv('LOG_LEVEL', "info"),
         proxy_headers=True
     )
