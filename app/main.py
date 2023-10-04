@@ -8,17 +8,19 @@
    Youtube:  https://www.youtube.com/enriquecatala
    
 """
+import os
 from os import environ
 import json
 from typing import Optional
 from loguru import logger
 
 from fastapi import FastAPI
+import uvicorn
 
 app = FastAPI()
 
 
-@app.get("/one/hello")
+@app.get("/hello")
 def read_root():
     if "HELLOWORLD_ENV" in environ:
         txt = environ.get('HELLOWORLD_ENV')
@@ -46,3 +48,15 @@ def read_api_key():
 @app.get("/items/{item_id}")
 def read_item(item_id: int, q: Optional[str] = None):
     return {"item_id": item_id, "q": q}
+
+
+if __name__ == "__main__":
+    print("Starting webserver ...")
+    uvicorn.run(
+        api,
+        host="0.0.0.0",
+        port=int(os.getenv("PORT", 8080)),
+        debug=os.getenv("DEBUG", False),
+        log_level=os.getenv('LOG_LEVEL', "info"),
+        proxy_headers=True
+    )
