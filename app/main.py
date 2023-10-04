@@ -55,7 +55,6 @@ if __name__ == "__main__":
         app,
         host="0.0.0.0",
         port=int(os.getenv("PORT", 8080)),
-        reload=True,
         log_level=os.getenv('LOG_LEVEL', "info"),
         proxy_headers=True
     )
