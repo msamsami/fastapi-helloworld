@@ -10,7 +10,7 @@ build:
       value: '8080'
   secrets:
     - name: AWS_ACCESS
-      value: arn:aws:secretsmanager:us-east-1:299422155809:secret:meritlib_aws_access-v6Jg6B
+      value-from: arn:aws:secretsmanager:us-east-1:299422155809:secret:meritlib_aws_access-v6Jg6B
 
 run:
   command: python app/main.py # command to run fastapi
@@ -21,4 +21,4 @@ run:
       value: '|Mehdi Samsami|'
   secrets:
     - name: AWS_ACCESS
-      value: arn:aws:secretsmanager:us-east-1:299422155809:secret:meritlib_aws_access-v6Jg6B
+      value-from: arn:aws:secretsmanager:us-east-1:299422155809:secret:meritlib_aws_access-v6Jg6B
