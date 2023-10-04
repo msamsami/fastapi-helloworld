@@ -29,6 +29,15 @@ def read_root():
     return {"HELLOWORLD_ENV: {}".format(txt): "from /one/hello"}
 
 
+@app.get("/aws_access")
+def read_root():
+    if "AWS_ACCESS" in environ:
+        txt = environ.get('AWS_ACCESS')
+    else:
+        txt = "AWS_ACCESS not found!"
+    return {"AWS_ACCESS: {}".format(txt): "from /aws_access"}
+
+
 @app.get("/get_api_key")
 def read_api_key():
     api_key = ""    
@@ -38,7 +47,7 @@ def read_api_key():
             js = json.load(f)
             api_key = js["api_key"]
             # Do something with the file
-    except IOError:
+    except Exception as e:
         logger.exception(e)
         print("/app/secrets/appconfig.conf not accessible")
 
